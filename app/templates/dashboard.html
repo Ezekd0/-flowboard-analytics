@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}TaskFlow Analytics | Dashboard{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div>
+        <p class="eyebrow">Workspace dashboard</p>
+        <h1>Task performance</h1>
+        <p>Monitor delivery health, completion trends, and the most recent task activity.</p>
+    </div>
+    <div class="header-actions">
+        <a class="button secondary" href="/">Overview</a>
+        <a class="button secondary" href="/api/docs">API Docs</a>
+        <a class="button secondary" href="/about">About</a>
+        <button class="button primary" type="button" id="refreshDashboard">Refresh</button>
+    </div>
+</section>
+
+<section class="alert-banner is-hidden" id="dashboardNotice" role="status"></section>
+
+<section class="metrics-grid" aria-label="Dashboard metrics">
+    <article class="metric-card">
+        <span class="metric-label">Total Tasks</span>
+        <strong id="totalTasks">0</strong>
+        <small>All active tracked work</small>
+    </article>
+    <article class="metric-card accent-success">
+        <span class="metric-label">Completed</span>
+        <strong id="completedTasks">0</strong>
+        <small>Closed or finished tasks</small>
+    </article>
+    <article class="metric-card accent-warning">
+        <span class="metric-label">Completion Rate</span>
+        <strong id="completionRate">0%</strong>
+        <small>Completed compared with total</small>
+    </article>
+    <article class="metric-card accent-dark">
+        <span class="metric-label">Productivity Score</span>
+        <strong id="productivityScore">0</strong>
+        <small>Latest productivity signal</small>
+    </article>
+</section>
+
+<section class="dashboard-grid">
+    <article class="panel chart-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Completion Trend</h2>
+                <p>Daily completed task volume.</p>
+            </div>
+        </div>
+        <div class="chart-frame">
+            <canvas id="completionTrend"></canvas>
+        </div>
+    </article>
+
+    <article class="panel chart-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Status Distribution</h2>
+                <p>Current task mix by workflow state.</p>
+            </div>
+        </div>
+        <div class="chart-frame compact">
+            <canvas id="statusDistribution"></canvas>
+        </div>
+    </article>
+</section>
+
+<section class="panel table-panel">
+    <div class="panel-header">
+        <div>
+            <h2>Recent Tasks</h2>
+            <p>Latest tasks from the authenticated workspace.</p>
+        </div>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody id="recentTasks">
+                <tr>
+                    <td colspan="4" class="empty-cell">Loading dashboard data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

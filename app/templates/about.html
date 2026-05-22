@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}TaskFlow Analytics | About{% endblock %}
+
+{% block content %}
+<section class="page-header narrow">
+    <div>
+        <p class="eyebrow">About the product</p>
+        <h1>TaskFlow Analytics helps teams understand work in motion.</h1>
+        <p>It pairs a task API with analytics endpoints so teams can track priorities, completion, and productivity patterns.</p>
+    </div>
+</section>
+
+<section class="about-layout">
+    <article class="panel">
+        <h2>What it includes</h2>
+        <ul class="check-list">
+            <li>User registration, login, and JWT authentication</li>
+            <li>Task creation, updates, filtering, and deletion</li>
+            <li>Task statistics and productivity metrics</li>
+            <li>JSON and CSV analytics export endpoints</li>
+            <li>Interactive API documentation for testing requests</li>
+        </ul>
+    </article>
+    <article class="panel">
+        <h2>Built for</h2>
+        <p>
+            Small operations teams, internal tools, and portfolio-ready backend projects that need a clean API surface and a practical dashboard.
+        </p>
+        <div class="action-row compact">
+            <a class="button primary" href="/dashboard">Open Dashboard</a>
+            <a class="button secondary" href="/">Back to Overview</a>
+            <a class="button secondary" href="/api/docs">API Docs</a>
+        </div>
+    </article>
+</section>
+{% endblock %}
