@@ -1,0 +1,23 @@
+[MASTER]
+ignore=.git,.venv,venv,migrations,build,dist
+jobs=0
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods,
+    duplicate-code
+
+[FORMAT]
+max-line-length=88
+
+[DESIGN]
+max-args=8
+max-locals=20
+max-returns=8
+max-branches=15
+
+[TYPECHECK]
+ignored-modules=pandas,numpy

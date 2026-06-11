@@ -1,19 +1,37 @@
-from setuptools import setup, find_packages
+from pathlib import Path
+
+from setuptools import find_packages, setup
+
+BASE_DIR = Path(__file__).parent
+REQUIREMENTS = [
+    line.strip()
+    for line in (BASE_DIR / "requirements.txt").read_text(encoding="utf-8").splitlines()
+    if line.strip() and not line.strip().startswith("#")
+]
 
 setup(
     name="taskflow-analytics",
-    version="0.1.0",
-    description="Task flow analytics application with FastAPI",
-    author="Your Name",
-    author_email="your.email@example.com",
-    packages=find_packages(),
-    python_requires=">=3.9",
-    install_requires=[
-        "fastapi>=0.104.1",
-        "uvicorn>=0.24.0",
-        "sqlalchemy>=2.0.23",
-        "psycopg2-binary>=2.9.9",
-        "python-dotenv>=1.0.0",
-        "pydantic>=2.5.0",
+    version="1.0.0",
+    description="Production-ready FastAPI backend for task management and analytics.",
+    long_description=(BASE_DIR / "README.md").read_text(encoding="utf-8"),
+    long_description_content_type="text/markdown",
+    author="[your-name]",
+    author_email="[your-email]",
+    url="https://github.com/[your-username]/taskflow-analytics",
+    license="MIT",
+    packages=find_packages(exclude=["tests", "tests.*"]),
+    include_package_data=True,
+    install_requires=REQUIREMENTS,
+    python_requires=">=3.11",
+    entry_points={"console_scripts": ["taskflow-api=app.main:app"]},
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Framework :: FastAPI",
+        "Topic :: Software Development :: Libraries :: Application Frameworks",
     ],
 )
