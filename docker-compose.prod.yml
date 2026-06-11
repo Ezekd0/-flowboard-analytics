@@ -29,46 +29,6 @@ services:
       - internal
       - edge
 
-  celery_worker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: taskflow_celery_worker_prod
-    command: celery -A app.core.celery_app worker --loglevel=INFO
-    env_file:
-      - .env.production
-    depends_on:
-      - redis
-      - db
-    restart: unless-stopped
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "5"
-    networks:
-      - internal
-
-  celery_beat:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: taskflow_celery_beat_prod
-    command: celery -A app.core.celery_app beat --loglevel=INFO
-    env_file:
-      - .env.production
-    depends_on:
-      - redis
-      - db
-    restart: unless-stopped
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "5"
-    networks:
-      - internal
-
   db:
     image: postgres:16-alpine
     container_name: taskflow_db_prod
