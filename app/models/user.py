@@ -26,7 +26,8 @@ class User(Base):
     last_login = Column(DateTime(timezone=True))
     
     # Relationships
-    tasks = relationship("Task", back_populates="owner", cascade="all, delete-orphan")
+    tasks = relationship("Task", back_populates="owner", foreign_keys="[Task.owner_id]", cascade="all, delete-orphan")
+
     
     def __repr__(self):
         return f"<User {self.email}>"
